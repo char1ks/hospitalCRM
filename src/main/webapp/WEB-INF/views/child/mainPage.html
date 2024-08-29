@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список детей</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Список детей</h2>
+    <a th:href="@{/child/new}" class="btn btn-primary mb-3">Добавить нового ребенка</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Дата рождения</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="child : ${childs}">
+            <td th:text="${child.getChild_id()}"></td>
+            <td th:text="${child.getName()}"></td>
+            <td th:text="${#dates.format(child.getBirthDate(), 'yyyy/MM/dd')}"></td>
+            <td>
+                <a th:href="@{/child/{id}(id=${child.getChild_id()})}" class="btn btn-info">Просмотреть</a>
+                <a th:href="@{/child/{id}/edit(id=${child.getChild_id()})}" class="btn btn-warning">Редактировать</a>
+                <form th:action="@{/child/{id}(id=${child.getChild_id()})}" method="post" style="display:inline;">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

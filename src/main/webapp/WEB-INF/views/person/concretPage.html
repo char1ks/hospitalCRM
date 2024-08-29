@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о человеке</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Информация о человеке</h2>
+    <p><strong>ID:</strong> <span th:text="${concretPerson.get().getPerson_id()}"></span></p>
+    <p><strong>Полное имя:</strong> <span th:text="${concretPerson.get().getFullName()}"></span></p>
+    <p><strong>Место жительства:</strong> <span th:text="${concretPerson.get().getPlaceLive()}"></span></p>
+    <p><strong>Дата рождения:</strong> <span th:text="${#dates.format(concretPerson.get().getAge(), 'yyyy/MM/dd')}"></span></p>
+    <a th:href="@{/person}" class="btn btn-secondary">Назад к списку</a>
+</div>
+</body>
+</html>

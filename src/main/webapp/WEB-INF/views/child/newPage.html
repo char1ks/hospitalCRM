@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить нового ребенка</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Добавить нового ребенка</h2>
+    <form th:method="POST" th:action="@{/child}" th:object="${newChild}">
+        <div class="form-group">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" class="form-control" th:field="*{name}" required>
+        </div>
+        <div class="form-group">
+            <label for="birthDate">Дата рождения:</label>
+            <input type="date" id="birthDate" class="form-control" th:field="*{birthDate}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a th:href="@{/child}" class="btn btn-secondary">Отмена</a>
+    </form>
+    <div th:if="${#fields.hasErrors()}">
+        <div class="alert alert-danger" role="alert">
+            <p th:each="error : ${#fields.errors('newChild')}" th:text="${error}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
